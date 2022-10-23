@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:quest_server/app/notifier/database.notifier.dart';
 import 'package:quest_server/app/routes/app.routes.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
+import 'package:provider/provider.dart' as prvdr;
 
 class SignupView extends StatefulWidget {
   const SignupView({Key? key}) : super(key: key);
@@ -12,6 +14,8 @@ class SignupView extends StatefulWidget {
 class _SignupViewState extends State<SignupView> {
   @override
   Widget build(BuildContext context) {
+    final DatabaseNotifier databaseNotifier =
+        prvdr.Provider.of<DatabaseNotifier>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: Text("Sign Up"),
@@ -21,6 +25,10 @@ class _SignupViewState extends State<SignupView> {
           SupaEmailAuth(
             authAction: SupaAuthAction.signUp,
             onSuccess: (GotrueSessionResponse response) {
+              databaseNotifier.addInfo(
+                  id: "${response.user!.id}",
+                  email: "${response.user!.email}",
+                  phone: "${response.user!.phone}");
               Navigator.of(context).pushNamed(AppRoutes.LoginRoute);
             },
             onError: (error) {

@@ -16,17 +16,13 @@ class DatabaseService {
   Future<PostgrestResponse?> addInfo(
       {required String id,
       required String email,
-      required String password,
-      required String name,
       required String phone}) async {
     PostgrestResponse? response =
         await Supabase.instance.client.from("Users").insert(
       {
-        "id": user!.id,
+        "id": id,
         "email": email,
-        "password": password,
-        "name": name,
-        "phone": phone
+        "phone": phone,
       },
     );
   }
