@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:quest_server/app/notifier/database.notifier.dart';
 import 'package:quest_server/app/routes/app.routes.dart';
+import 'package:quest_server/core/service/database.service.dart';
 import 'package:supabase_auth_ui/supabase_auth_ui.dart';
 
 class LoginView extends StatefulWidget {
