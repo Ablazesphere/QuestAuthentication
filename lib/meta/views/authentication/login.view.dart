@@ -16,21 +16,24 @@ class _LoginViewState extends State<LoginView> {
       appBar: AppBar(
         title: Text("Login"),
       ),
-      body: Column(
-        children: [
-          SupaEmailAuth(
-            authAction: SupaAuthAction.signIn,
-            onSuccess: (GotrueSessionResponse response) {
-              Navigator.of(context).pushNamed(AppRoutes.ProfileRoute);
-            },
-          ),
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).pushNamed(AppRoutes.SignupRoute);
-            },
-            child: Text("Already have an account? Sign Up"),
-          )
-        ],
+      body: Container(
+        padding: EdgeInsets.only(top: 16),
+        child: Column(
+          children: [
+            SupaEmailAuth(
+              authAction: SupaAuthAction.signIn,
+              onSuccess: (GotrueSessionResponse response) {
+                Navigator.of(context).pushNamed(AppRoutes.ProfileRoute);
+              },
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(AppRoutes.SignupRoute);
+              },
+              child: Text("Already have an account? Sign Up"),
+            )
+          ],
+        ),
       ),
     );
   }
